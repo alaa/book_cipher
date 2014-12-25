@@ -1,15 +1,16 @@
 require 'open-uri'
 require_relative 'cipher'
 
-dic = File.read("dictionary.txt")
-dic = File.read(open("http://tools.ietf.org/html/rfc1034"))
+online_text = File.read(open("http://tools.ietf.org/html/rfc1034"))
 text = File.read("message.txt")
 
-cipher = BookCipher.new(dic: dic)
+cipher = BookCipher.new(book: online_text)
 
-code = cipher.encrypt(text: text)
-puts "Code is: #{code}"
+100.times do
+  code = cipher.encrypt(text: text)
+  puts "Code is: #{code}"
 
-message = cipher.decrypt(code)
-puts "Decrypted message is: #{message}"
+  message = cipher.decrypt(code)
+  puts "Decrypted message is: #{message}"
+end
 

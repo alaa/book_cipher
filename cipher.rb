@@ -1,13 +1,11 @@
 class BookCipher
 
-  def initialize(dic: dic)
+  def initialize(book: book)
     @dic = {}
 
-    dic.to_chars.each_with_index do |key, value|
-      @dic.key?(key) ? @dic[key] << value : @dic[key] = [value]
+    book.to_chars.each_with_index do |key, value|
+      dic.key?(key) ? dic[key] << value : dic[key] = [value]
     end
-
-    puts "dictionary size: #{dic.size}"
   end
 
   def encrypt(text: text)
@@ -35,7 +33,7 @@ class BookCipher
   end
 
   private
-  attr_reader :dic
+  attr_accessor :dic
 end
 
 class String
@@ -43,6 +41,4 @@ class String
     self.split(//)
   end
 end
-
-
 
