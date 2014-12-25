@@ -7,13 +7,18 @@ describe String do
 end
 
 describe BookCipher do
-  let(:dic) { "abcdabcdea" }
+  let(:book) { "abcdabcdea" }
   let(:text) { "ab" }
-  subject { BookCipher.new(dic: dic) }
+  subject { BookCipher.new(book: book) }
 
   it "encrypts the text" do
     code = subject.encrypt(text: text)
-    expect([0,9,4,1,5]).to include(*code)
+    expect([0,9,4,1,5]).to include(*code.split('.').map(&:to_i))
+  end
+
+  it "decrypts the text" do
+    code = '4.1'
+    expect(subject.decrypt(code)).to eql text
   end
 end
 
