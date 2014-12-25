@@ -1,0 +1,1 @@
+With this new solid core, etcd will become an even better fundamental building block for composing distributed systems. To give it a shot, please head on over to our GitHub release page for container images and binaries for Linux and OS X.
