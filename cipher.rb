@@ -1,4 +1,5 @@
 class BookCipher
+  SEPERATOR = "."
 
   def initialize(book: book)
     @dic = {}
@@ -19,13 +20,13 @@ class BookCipher
       code << random_char_index
     end
 
-    code.flatten.join('.')
+    code.flatten.join(SEPERATOR)
   end
 
   def decrypt(code)
     msg = []
 
-    code.split('.').each do |c|
+    code.split(SEPERATOR).each do |c|
       msg << dic.detect { |char, codes| codes.include?(c.to_i) }.first
     end
 
