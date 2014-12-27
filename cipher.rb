@@ -2,10 +2,10 @@ class BookCipher
   SEPERATOR = "."
 
   def initialize(book: book)
-    @dic = {}
+    @codebook = {}
 
     book.to_chars.each_with_index do |key, value|
-      dic.key?(key) ? dic[key] << value : dic[key] = [value]
+      codebook.key?(key) ? codebook[key] << value : codebook[key] = [value]
     end
   end
 
@@ -14,9 +14,9 @@ class BookCipher
     code = []
 
     msg.each do |c|
-      raise DictionaryNotSufficient unless dic.key?(c)
+      raise DictionaryNotSufficient unless codebook.key?(c)
 
-      random_char_index = dic[c].sample
+      random_char_index = codebook[c].sample
       code << random_char_index
     end
 
@@ -27,14 +27,14 @@ class BookCipher
     msg = []
 
     code.split(SEPERATOR).each do |c|
-      msg << dic.detect { |char, codes| codes.include?(c.to_i) }.first
+      msg << codebook.detect { |char, codes| codes.include?(c.to_i) }.first
     end
 
     msg.join
   end
 
   private
-  attr_accessor :dic
+  attr_accessor :codebook
 end
 
 class String
